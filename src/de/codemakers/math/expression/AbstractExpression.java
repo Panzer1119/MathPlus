@@ -10,43 +10,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.nevec.rjm.BigComplex;
-import org.nevec.rjm.BigDecimalMath;
 
 /**
- * ComplexExpression
+ * AbstractExpression
  *
  * @author Paul Hagedorn
  */
-public class ComplexExpression {
+public abstract class AbstractExpression<T> {
 
-    private final List<Token> tokens;
-    private final Map<String, BigComplex> variables;
+    private final List<Token<T>> tokens;
+    private final Map<String, T> variables;
     private final Set<String> userFunctionNames;
 
-    public ComplexExpression(List<Token> tokens) {
+    public AbstractExpression(List<Token<T>> tokens) {
         this(tokens, Collections.emptySet());
     }
 
-    public ComplexExpression(List<Token> tokens, Set<String> userFunctionNames) {
-        this(tokens, createDefaultVariables(), userFunctionNames);
+    public AbstractExpression(List<Token<T>> tokens, Set<String> userFunctionNames) {
+        this(tokens, null, userFunctionNames);
     }
 
-    public ComplexExpression(List<Token> tokens, Map<String, BigComplex> variables, Set<String> userFunctionNames) {
+    public AbstractExpression(List<Token<T>> tokens, Map<String, T> variables, Set<String> userFunctionNames) {
         this.tokens = tokens;
-        this.variables = variables;
+        this.variables = variables == null ? createDefaultVariables() : variables;
         this.userFunctionNames = userFunctionNames;
     }
 
-    public ComplexExpression(ComplexExpression complexExpression) {
+    public AbstractExpression(AbstractExpression abstractExpression) {
         this.tokens = new ArrayList<>();
-        this.tokens.addAll(complexExpression.tokens);
+        this.tokens.addAll(abstractExpression.tokens);
         this.variables = new HashMap<>();
-        this.variables.putAll(complexExpression.variables);
-        this.userFunctionNames = new HashSet<>(complexExpression.userFunctionNames);
+        this.variables.putAll(abstractExpression.variables);
+        this.userFunctionNames = new HashSet<>(abstractExpression.userFunctionNames);
     }
 
-    public final ComplexExpression setVariable(String name, BigComplex value) {
+    public final AbstractExpression setVariable(String name, T value) {
         if (value == null) {
             return this;
         }
@@ -61,7 +59,7 @@ public class ComplexExpression {
         }
     }
 
-    public final ComplexExpression setVariables(Map<String, BigComplex> variables) {
+    public final AbstractExpression setVariables(Map<String, T> variables) {
         if (variables == null || variables.isEmpty()) {
             return this;
         }
@@ -69,7 +67,7 @@ public class ComplexExpression {
         return this;
     }
 
-    private final ComplexExpression setVariable(Map.Entry<String, BigComplex> variable) {
+    private final AbstractExpression setVariable(Map.Entry<String, T> variable) {
         if (variable == null) {
             return this;
         }
@@ -83,14 +81,6 @@ public class ComplexExpression {
         return variableNames;
     }
 
-    static final Map<String, BigComplex> createDefaultVariables() {
-        final Map<String, BigComplex> variables = new HashMap<>(5);
-        variables.put("pi", new BigComplex(BigDecimalMath.PI));
-        variables.put("π", new BigComplex(BigDecimalMath.PI));
-        variables.put("e", new BigComplex(BigDecimalMath.E));
-        variables.put("φ", new BigComplex(BigDecimalMath.GOLDEN_RATIO));
-        variables.put("γ", new BigComplex(BigDecimalMath.GAMMA));
-        return variables;
-    }
+    abstract Map<String, T> createDefaultVariables();
 
 }

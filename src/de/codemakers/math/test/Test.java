@@ -1,10 +1,6 @@
 package de.codemakers.math.test;
 
-import ch.obermuhlner.math.big.BigDecimalMath;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import org.nevec.rjm.BigComplex;
-import org.nevec.rjm.BigComplexMath;
+import de.codemakers.math.complex.ComplexDouble;
 
 /**
  * Test
@@ -12,14 +8,25 @@ import org.nevec.rjm.BigComplexMath;
  * @author Paul Hagedorn
  */
 public class Test {
-    
+
     public static final void main(String[] args) {
         System.out.println("Start");
-        System.out.println(BigComplexMath.pow(BigComplex.TWO_I, BigComplex.I));
-        System.out.println(BigComplexMath.powe(BigComplex.I));
-        System.err.println(BigDecimalMath.sin(BigDecimal.ONE, MathContext.UNLIMITED));
-        System.err.println(BigComplexMath.sin(BigComplex.I));
-        System.err.println(BigComplexMath.cos(BigComplex.I));
+        System.out.println(ComplexDouble.HALF_I.sin());
+        System.out.println(ComplexDouble.HALF_I.sinh());
+        System.out.println(ComplexDouble.HALF_I.cos());
+        System.out.println(ComplexDouble.HALF_I.cosh());
+        System.out.println(ComplexDouble.HALF_I.tan());
+        System.out.println(ComplexDouble.HALF_I.tanh());
+        System.out.println(ComplexDouble.HALF_I.cot());
+        System.out.println(ComplexDouble.HALF_I.sec());
+        System.out.println(ComplexDouble.HALF_I.log());
+        System.out.println(ComplexDouble.HALF_I.log(ComplexDouble.TWO));
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).sgn());
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).pow(0.5));
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).asin());
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).acos());
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).atan());
+        System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).asec());
         System.out.println("End");
     }
 

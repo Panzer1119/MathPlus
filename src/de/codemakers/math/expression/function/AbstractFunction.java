@@ -1,22 +1,20 @@
 package de.codemakers.math.expression.function;
 
-import org.nevec.rjm.BigComplex;
-
 /**
- * Function
+ * AbstractFunction
  *
  * @author Paul Hagedorn
  */
-public abstract class Function {
+public abstract class AbstractFunction<T> {
 
     protected final String name;
     protected final int numArguments;
-    
-    public Function(String name) {
+
+    public AbstractFunction(String name) {
         this(name, 1);
     }
 
-    public Function(String name, int numArguments) {
+    public AbstractFunction(String name, int numArguments) {
         if (numArguments < 0) {
             throw new IllegalArgumentException(String.format("The number of function arguments can not be less than 0 for \"%s\"", name));
         }
@@ -30,13 +28,13 @@ public abstract class Function {
     public final String getName() {
         return name;
     }
-    
+
     public final int getNumArguments() {
         return numArguments;
     }
-    
-    public abstract BigComplex apply(BigComplex... args);
-    
+
+    public abstract T apply(T... args);
+
     public static final boolean isValidFunctionName(String name) {
         if (name == null) {
             return false;
@@ -53,5 +51,5 @@ public abstract class Function {
         }
         return true;
     }
-    
+
 }

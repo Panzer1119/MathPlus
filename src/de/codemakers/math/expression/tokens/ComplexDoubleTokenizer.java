@@ -2,7 +2,9 @@ package de.codemakers.math.expression.tokens;
 
 import de.codemakers.math.complex.ComplexDouble;
 import de.codemakers.math.expression.function.AbstractFunction;
+import de.codemakers.math.expression.function.ComplexDoubleFunctions;
 import de.codemakers.math.expression.operator.AbstractOperator;
+import de.codemakers.math.expression.operator.ComplexDoubleOperators;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,12 +21,12 @@ public class ComplexDoubleTokenizer extends AbstractTokenizer<ComplexDouble> {
 
     @Override
     public final AbstractOperator<ComplexDouble> getStandardOperator(char symbol, int numArguments) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ComplexDoubleOperators.getStandardOperator("" + symbol, numArguments);
     }
 
     @Override
     public final AbstractFunction<ComplexDouble> getStandardFunction(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ComplexDoubleFunctions.getStandardFunction(name);
     }
 
 }

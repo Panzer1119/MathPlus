@@ -1,6 +1,7 @@
 package de.codemakers.math.expression;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * ValidationResult
@@ -29,7 +30,7 @@ public class ValidationResult {
      *
      * @return true if the validation was successful, false otherwise
      */
-    public boolean isValid() {
+    public final boolean isValid() {
         return valid;
     }
 
@@ -39,8 +40,16 @@ public class ValidationResult {
      *
      * @return The List of errors
      */
-    public List<String> getErrors() {
+    public final List<String> getErrors() {
         return errors;
+    }
+
+    @Override
+    public final String toString() {
+        if (errors == null) {
+            return "";
+        }
+        return errors.stream().collect(Collectors.joining("\n"));
     }
 
     /**

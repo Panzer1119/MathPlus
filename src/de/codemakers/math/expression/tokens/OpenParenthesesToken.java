@@ -11,4 +11,9 @@ public class OpenParenthesesToken extends Token {
         super(TokenType.OPEN_PARENTHESES);
     }
 
+    @Override
+    public final String getName() {
+        return getClass().getSimpleName();
+    }
+
 }

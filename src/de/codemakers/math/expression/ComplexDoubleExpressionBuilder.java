@@ -16,10 +16,11 @@ public class ComplexDoubleExpressionBuilder extends AbstractExpressionBuilder<Co
     }
 
     @Override
-    public final AbstractExpression build() {
+    public final ComplexDoubleExpression build() {
         if (expression.length() == 0) {
             throw new IllegalArgumentException("The expression can not be empty");
         }
+        addVariable("i");
         addVariable("pi");
         addVariable("π");
         addVariable("e");

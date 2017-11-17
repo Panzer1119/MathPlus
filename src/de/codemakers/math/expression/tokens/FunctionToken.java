@@ -20,4 +20,9 @@ public class FunctionToken<T> extends Token {
         return function;
     }
 
+    @Override
+    public final String getName() {
+        return function == null ? getClass().getSimpleName() : function.getName();
+    }
+
 }

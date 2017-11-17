@@ -17,4 +17,6 @@ public abstract class Token<T> {
         return tokenType;
     }
 
+    public abstract String getName();
+
 }

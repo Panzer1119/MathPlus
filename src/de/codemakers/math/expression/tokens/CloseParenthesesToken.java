@@ -11,4 +11,9 @@ public class CloseParenthesesToken extends Token {
         super(TokenType.CLOSE_PARENTHESES);
     }
 
+    @Override
+    public final String getName() {
+        return getClass().getSimpleName();
+    }
+
 }

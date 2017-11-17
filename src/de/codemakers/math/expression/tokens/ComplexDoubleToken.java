@@ -24,4 +24,9 @@ public class ComplexDoubleToken extends Token {
         return value;
     }
 
+    @Override
+    public final String getName() {
+        return getClass().getSimpleName();
+    }
+
 }

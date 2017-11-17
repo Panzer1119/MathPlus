@@ -87,6 +87,10 @@ public abstract class AbstractExpression<T> {
         return variableNames;
     }
 
+    public final ValidationResult validate() {
+        return validate(true);
+    }
+
     public final ValidationResult validate(boolean checkVariableSet) {
         final List<String> errors = new ArrayList<>(0);
         if (checkVariableSet) {
@@ -125,7 +129,7 @@ public abstract class AbstractExpression<T> {
                     break;
             }
             if (count < 1) {
-                errors.add("Too many operators");
+                errors.add(String.format("Too many operators for \"%s\"", token.getName()));
                 return new ValidationResult(false, errors);
             }
         }
@@ -133,10 +137,6 @@ public abstract class AbstractExpression<T> {
             errors.add("Too many operators");
         }
         return errors.isEmpty() ? ValidationResult.SUCCESS : new ValidationResult(false, errors);
-    }
-
-    public final ValidationResult validate() {
-        return validate(true);
     }
 
     public final Future<T> evaluateAsync(ExecutorService executor) {

@@ -23,4 +23,9 @@ public class OperatorToken<T> extends Token {
         return operator;
     }
 
+    @Override
+    public final String getName() {
+        return operator.getSymbol();
+    }
+
 }

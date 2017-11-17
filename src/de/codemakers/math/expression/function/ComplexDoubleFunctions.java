@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ComplexDoubleFunctions {
 
-    public static final List<AbstractFunction<ComplexDouble>> STANDARD_FUNCTIONS = new ArrayList<>(23);
+    public static final List<AbstractFunction<ComplexDouble>> STANDARD_FUNCTIONS = new ArrayList<>(27);
 
     static {
         STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("sin") {
@@ -150,6 +150,30 @@ public class ComplexDoubleFunctions {
             @Override
             public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].sgn();
+            }
+        });
+        STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("arg", 1) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return ComplexDouble.ofDouble(args[0].arg());
+            }
+        });
+        STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("sec", 1) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return args[0].sec();
+            }
+        });
+        STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("re", 1) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return ComplexDouble.ofDouble(args[0].getRealPart());
+            }
+        });
+        STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("im", 1) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return ComplexDouble.ofDouble(args[0].getImaginaryPart());
             }
         });
     }

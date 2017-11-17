@@ -1,6 +1,9 @@
 package de.codemakers.math.test;
 
 import de.codemakers.math.complex.ComplexDouble;
+import de.codemakers.math.expression.ComplexDoubleExpression;
+import de.codemakers.math.expression.ComplexDoubleExpressionBuilder;
+import de.codemakers.math.expression.ValidationResult;
 
 /**
  * Test
@@ -27,6 +30,13 @@ public class Test {
         System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).acos());
         System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).atan());
         System.out.println(ComplexDouble.HALF_I.add(ComplexDouble.TWO).asec());
+        final String expression_string = "log(1 + 2i)^e";
+        System.err.println(expression_string);
+        final ComplexDoubleExpressionBuilder builder = new ComplexDoubleExpressionBuilder(expression_string);
+        final ComplexDoubleExpression expression = builder.build();
+        final ValidationResult result = expression.validate();
+        System.err.println("Valid: " + result.isValid() + (result.isValid() ? "" : "\n" + result));
+        System.err.println(expression.evalute());
         System.out.println("End");
     }
 

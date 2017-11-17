@@ -96,10 +96,10 @@ public abstract class AbstractTokenizer<T> {
                 lastValidLen = len;
                 lastValidToken = new VariableToken(name);
             } else {
-                final AbstractFunction<T> f = getFunction(name);
-                if (f != null) {
+                final AbstractFunction<T> function = getFunction(name);
+                if (function != null) {
                     lastValidLen = len;
-                    lastValidToken = new FunctionToken(f);
+                    lastValidToken = new FunctionToken(function);
                 }
             }
             len++;

@@ -91,7 +91,8 @@ public class ComplexDoubleExpression extends AbstractExpression<ComplexDouble> {
 
     @Override
     final Map<String, ComplexDouble> createDefaultVariables() {
-        final Map<String, ComplexDouble> variables = new HashMap<>(5);
+        final Map<String, ComplexDouble> variables = new HashMap<>(6);
+        variables.put("i", ComplexDouble.ONE_I);
         variables.put("pi", ComplexDouble.PI);
         variables.put("π", ComplexDouble.PI);
         variables.put("e", ComplexDouble.E);

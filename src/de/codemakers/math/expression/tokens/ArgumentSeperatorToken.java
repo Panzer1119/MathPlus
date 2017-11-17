@@ -11,4 +11,9 @@ public class ArgumentSeperatorToken extends Token {
         super(TokenType.ARGUMENT_SEPERATOR);
     }
 
+    @Override
+    public final String getName() {
+        return getClass().getSimpleName();
+    }
+
 }

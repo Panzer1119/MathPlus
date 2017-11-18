@@ -47,4 +47,24 @@ public class MathUtil {
         return false;
     }
 
+    /**
+     * Parses doubles e.g. "-" to "-1.0" or "+" to "+1.0"
+     *
+     * @param text String
+     * @return Parsed double
+     */
+    public static final double parseDouble(String text) {
+        if (text == null) {
+            return 0.0;
+        }
+        if (text.equals("-") || text.equals("+")) {
+            text += "1";
+        }
+        try {
+            return Double.parseDouble(text);
+        } catch (Exception ex) {
+            return 0.0;
+        }
+    }
+
 }

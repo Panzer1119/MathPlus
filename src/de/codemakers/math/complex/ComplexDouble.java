@@ -1,6 +1,7 @@
 package de.codemakers.math.complex;
 
 import de.codemakers.math.util.MathUtil;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +12,9 @@ import java.util.regex.Pattern;
  */
 public class ComplexDouble {
 
-    public static final Pattern COMPLEX_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)((?:\\+|-)(?:\\d+(?:.|,))?\\d+)i");
+    public static final Pattern COMPLEX_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)((?:\\+|-)(?:\\d+(?:.|,))?\\d*)i");
+    public static final Pattern REAL_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)");
+    public static final Pattern IMAGINARY_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d*)i");
 
     public static final ComplexDouble ZERO = ofDouble(0);
     public static final ComplexDouble HALF = ofDouble(0.5);
@@ -469,7 +472,19 @@ public class ComplexDouble {
      */
     @Override
     public final String toString() {
-        return String.format("(%f %s %fi)", real_part, ((imaginary_part < 0.0) ? "-" : "+"), Math.abs(imaginary_part));
+        if (real_part != 0.0 && imaginary_part != 0.0) {
+            return toCompleteString();
+        } else if (real_part != 0.0) {
+            return real_part + "";
+        } else if (imaginary_part != 0.0) {
+            return imaginary_part + "i";
+        } else {
+            return "";
+        }
+    }
+
+    public final String toCompleteString() {
+        return String.format(Locale.ENGLISH, "(%f %s %fi)", real_part, ((imaginary_part < 0.0) ? "-" : "+"), Math.abs(imaginary_part));
     }
 
     /**
@@ -480,12 +495,28 @@ public class ComplexDouble {
      */
     public static final ComplexDouble ofString(String text) {
         text = MathUtil.removeOuterParentheses(text.trim().replaceAll("\\s", ""));
-        final Matcher matcher = COMPLEX_NUMBER_PATTERN.matcher(text);
+        Matcher matcher = COMPLEX_NUMBER_PATTERN.matcher(text);
         if (!matcher.matches()) {
-            return null;
+            matcher = IMAGINARY_NUMBER_PATTERN.matcher(text);
+            if (!matcher.matches()) {
+                matcher = REAL_NUMBER_PATTERN.matcher(text);
+                if (!matcher.matches()) {
+                    return null;
+                }
+                try {
+                    return new ComplexDouble(MathUtil.parseDouble(matcher.group(1)), 0.0);
+                } catch (Exception ex) {
+                    return null;
+                }
+            }
+            try {
+                return new ComplexDouble(0.0, MathUtil.parseDouble(matcher.group(1)));
+            } catch (Exception ex) {
+                return null;
+            }
         }
         try {
-            return new ComplexDouble(Double.parseDouble(matcher.group(1)), Double.parseDouble(matcher.group(2)));
+            return new ComplexDouble(MathUtil.parseDouble(matcher.group(1)), MathUtil.parseDouble(matcher.group(2)));
         } catch (Exception ex) {
             return null;
         }

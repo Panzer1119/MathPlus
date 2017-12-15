@@ -1,22 +1,30 @@
 package de.codemakers.math.matrix;
 
+import de.codemakers.math.AdvancedDouble;
 import de.codemakers.math.AdvancedNumber;
 import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Matrix {
 
     private final AdvancedNumber[][] matrix; //Zeilen zuerst, Spalten spaeter
-
+    
     public Matrix(int rows, int cols, Class<? extends AdvancedNumber> clazz) {
+        this(rows, cols, false, clazz);
+    }
+
+    public Matrix(int rows, int cols, boolean identity, Class<? extends AdvancedNumber> clazz) {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("A matrix has to be at least 1X1");
         } else if (clazz == null) {
             throw new IllegalArgumentException("A matrix has to have a Class");
         }
         this.matrix = (AdvancedNumber[][]) Array.newInstance(clazz, new int[]{rows, cols});
+        if (clazz.isAssignableFrom(AdvancedDouble.class)) {
+            applyFunction((row, col, value) -> new AdvancedDouble((row == col && identity) ? 1 : 0));
+        }
     }
 
     public Matrix(AdvancedNumber[][] matrix) {
@@ -152,7 +160,7 @@ public class Matrix {
 
     @Override
     public final String toString() {
-        return Arrays.asList(matrix).stream().map((temp) -> Arrays.asList(temp).stream().map(Object::toString).collect(Collectors.joining(", ", "[", "]"))).collect(Collectors.joining(",\n ", "[", "]"));
+        return Arrays.asList(matrix).stream().filter(Objects::nonNull).map((temp) -> Arrays.asList(temp).stream().filter(Objects::nonNull).map(Object::toString).collect(Collectors.joining(", ", "[", "]"))).collect(Collectors.joining(",\n ", "[", "]"));
     }
 
     public static final <T extends AdvancedNumber> boolean checkSameSize(Matrix matrix_1, Matrix matrix_2) {

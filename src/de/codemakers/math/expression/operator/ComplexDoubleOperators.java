@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ComplexDoubleOperators {
 
-    public static final List<AbstractOperator<ComplexDouble>> STANDARD_OPERATORS = new ArrayList<>(8);
+    public static final List<AbstractOperator<ComplexDouble>> STANDARD_OPERATORS = new ArrayList<>(9);
 
     static {
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "+", AbstractOperator.PRECEDENCE_ADDITION) {
@@ -60,6 +60,12 @@ public class ComplexDoubleOperators {
             @Override
             public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].mod(args[1]);
+            }
+        });
+        STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, false, "∠", AbstractOperator.PRECEDENCE_POWER) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return args[0].multiply(ComplexDouble.E.pow(ComplexDouble.ONE_I.multiply(args[1]).multiply(ComplexDouble.PI.divide(ComplexDouble.ofInt(180)))));
             }
         });
     }

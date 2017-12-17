@@ -1,5 +1,7 @@
 package de.codemakers.math.complex;
 
+import de.codemakers.math.AdvancedDouble;
+import de.codemakers.math.AdvancedNumber;
 import de.codemakers.math.util.MathUtil;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -10,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author Paul Hagedorn
  */
-public class ComplexDouble {
+public class ComplexDouble extends AdvancedNumber {
 
     public static final Pattern COMPLEX_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)((?:\\+|-)(?:\\d+(?:.|,))?\\d*)i");
     public static final Pattern REAL_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)");
@@ -327,8 +329,8 @@ public class ComplexDouble {
      *
      * @return Complex argument of this ComplexDouble
      */
-    public final double arg() {
-        return Math.atan2(imaginary_part, real_part);
+    public final AdvancedDouble arg() {
+        return new AdvancedDouble(Math.atan2(imaginary_part, real_part));
     }
 
     /**
@@ -368,7 +370,7 @@ public class ComplexDouble {
      * @return A new ComplexDouble
      */
     public final ComplexDouble pow(ComplexDouble complexDouble) {
-        return new ComplexDouble(Math.cos((complexDouble.real_part * arg()) + (0.5 * complexDouble.imaginary_part * Math.log(getNormSquared()))), Math.sin((complexDouble.real_part * arg()) + (0.5 * complexDouble.imaginary_part * Math.log(getNormSquared())))).multiply(ofDouble(Math.pow(getNormSquared(), complexDouble.real_part * 0.5))).multiply(ofDouble(Math.pow(Math.E, -1.0 * complexDouble.imaginary_part * arg())));
+        return new ComplexDouble(Math.cos((complexDouble.real_part * arg().doubleValue()) + (0.5 * complexDouble.imaginary_part * Math.log(getNormSquared()))), Math.sin((complexDouble.real_part * arg().doubleValue()) + (0.5 * complexDouble.imaginary_part * Math.log(getNormSquared())))).multiply(ofDouble(Math.pow(getNormSquared(), complexDouble.real_part * 0.5))).multiply(ofDouble(Math.pow(Math.E, -1.0 * complexDouble.imaginary_part * arg().doubleValue())));
     }
 
     /**
@@ -395,7 +397,7 @@ public class ComplexDouble {
      * @return A new ComplexDouble
      */
     public final ComplexDouble log() {
-        return new ComplexDouble(Math.log(getNorm()), arg());
+        return new ComplexDouble(Math.log(getNorm()), arg().doubleValue());
     }
 
     /**
@@ -463,6 +465,125 @@ public class ComplexDouble {
             return ZERO;
         }
         return copy().divide(ofDouble(getNorm()));
+    }
+
+    @Override
+    public final ComplexDouble add(AdvancedNumber number) {
+        number = correct(number);
+        return add((ComplexDouble) number);
+    }
+
+    @Override
+    public final ComplexDouble divide(AdvancedNumber number) {
+        number = correct(number);
+        return divide((ComplexDouble) number);
+    }
+
+    @Override
+    public final ComplexDouble inverse() {
+        return new ComplexDouble(real_part / getNormSquared(), -imaginary_part / getNormSquared());
+    }
+
+    @Override
+    public final AdvancedDouble norm() {
+        return new AdvancedDouble(getNorm());
+    }
+
+    @Override
+    public final AdvancedDouble normSquared() {
+        return new AdvancedDouble(getNormSquared());
+    }
+
+    @Override
+    public final ComplexDouble log(AdvancedNumber number) {
+        number = correct(number);
+        return log((ComplexDouble) number);
+    }
+
+    @Override
+    public final AdvancedNumber log(double number) {
+        return log(new ComplexDouble(number, 0));
+    }
+
+    @Override
+    public final AdvancedNumber log(int number) {
+        return log(new ComplexDouble(number, 0));
+    }
+
+    @Override
+    public final ComplexDouble mod(AdvancedNumber number) {
+        number = correct(number);
+        return mod((ComplexDouble) number);
+    }
+
+    @Override
+    public final ComplexDouble multiply(AdvancedNumber number) {
+        number = correct(number);
+        return multiply((ComplexDouble) number);
+    }
+
+    @Override
+    public final ComplexDouble pow(AdvancedNumber number) {
+        number = correct(number);
+        return pow((ComplexDouble) number);
+    }
+
+    @Override
+    public final ComplexDouble reset() {
+        real_part = 0;
+        imaginary_part = 0;
+        return this;
+    }
+
+    @Override
+    public final ComplexDouble subtract(AdvancedNumber number) {
+        number = correct(number);
+        return subtract((ComplexDouble) number);
+    }
+    
+    private final ComplexDouble correct(AdvancedNumber number) {
+        if (number instanceof AdvancedDouble) {
+            return new ComplexDouble(((AdvancedDouble) number).doubleValue(), 0);
+        }
+        return (ComplexDouble) number;
+    }
+
+    @Override
+    public final boolean equals(AdvancedNumber number) {
+        if (number == null) {
+            return false;
+        }
+        if (number == this) {
+            return true;
+        }
+        check(number);
+        final ComplexDouble number_ = (ComplexDouble) number;
+        return real_part == number_.real_part && imaginary_part == number_.imaginary_part;
+    }
+
+    @Override
+    public final boolean isCompatible(AdvancedNumber number) {
+        return number != null && (number instanceof ComplexDouble || number instanceof AdvancedDouble);
+    }
+
+    @Override
+    public final int intValue() {
+        return (int) getNorm();
+    }
+
+    @Override
+    public final long longValue() {
+        return (long) getNorm();
+    }
+
+    @Override
+    public final float floatValue() {
+        return (float) getNorm();
+    }
+
+    @Override
+    public final double doubleValue() {
+        return (double) getNorm();
     }
 
     /**

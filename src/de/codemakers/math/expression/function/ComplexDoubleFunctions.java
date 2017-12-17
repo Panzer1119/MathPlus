@@ -155,7 +155,7 @@ public class ComplexDoubleFunctions {
         STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("arg", 1) {
             @Override
             public final ComplexDouble apply(ComplexDouble... args) {
-                return ComplexDouble.ofDouble(args[0].arg());
+                return ComplexDouble.ofDouble(args[0].arg().doubleValue());
             }
         });
         STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("sec", 1) {

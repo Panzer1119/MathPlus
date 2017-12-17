@@ -7,6 +7,14 @@ package de.codemakers.math;
  */
 public class AdvancedDouble extends AdvancedNumber {
 
+    public static final AdvancedDouble ZERO = new AdvancedDouble(0);
+    public static final AdvancedDouble ONE = new AdvancedDouble(1);
+    public static final AdvancedDouble MINUES_ONE = new AdvancedDouble(-1);
+    public static final AdvancedDouble PI = new AdvancedDouble(Math.PI);
+    public static final AdvancedDouble MINUES_PI = new AdvancedDouble(-Math.PI);
+    public static final AdvancedDouble E = new AdvancedDouble(Math.E);
+    public static final AdvancedDouble MINUES_E = new AdvancedDouble(-Math.E);
+
     private double value = 0.0;
 
     public AdvancedDouble(double value) {
@@ -43,7 +51,7 @@ public class AdvancedDouble extends AdvancedNumber {
     }
 
     @Override
-    public final AdvancedDouble modulo(AdvancedNumber number) {
+    public final AdvancedDouble mod(AdvancedNumber number) {
         check(number);
         return new AdvancedDouble(value % number.doubleValue());
     }
@@ -68,6 +76,151 @@ public class AdvancedDouble extends AdvancedNumber {
     public final AdvancedDouble reset() {
         value = 0.0;
         return this;
+    }
+
+    @Override
+    public final AdvancedDouble acos() {
+        return new AdvancedDouble(Math.acos(value));
+    }
+
+    @Override
+    public final AdvancedDouble arg() {
+        throw new UnsupportedOperationException("This is not a complex number");
+    }
+
+    @Override
+    public final AdvancedDouble asec() {
+        return new AdvancedDouble(Math.sin(value)).inverse();
+    }
+
+    @Override
+    public final AdvancedDouble asin() {
+        return new AdvancedDouble(Math.asin(value));
+    }
+
+    @Override
+    public final AdvancedDouble atan() {
+        return new AdvancedDouble(Math.atan(value));
+    }
+
+    @Override
+    public final AdvancedDouble ceil() {
+        return new AdvancedDouble(Math.ceil(value));
+    }
+
+    @Override
+    public final AdvancedDouble cos() {
+        return new AdvancedDouble(Math.cos(value));
+    }
+
+    @Override
+    public final AdvancedDouble cosh() {
+        return new AdvancedDouble(Math.cosh(value));
+    }
+
+    @Override
+    public final AdvancedDouble cot() {
+        return new AdvancedDouble(Math.tan(value)).inverse();
+    }
+
+    @Override
+    public final AdvancedDouble exp() {
+        return new AdvancedDouble(Math.exp(value));
+    }
+
+    @Override
+    public final AdvancedDouble expm1() {
+        return new AdvancedDouble(Math.expm1(value));
+    }
+
+    @Override
+    public final AdvancedDouble floor() {
+        return new AdvancedDouble(Math.floor(value));
+    }
+
+    @Override
+    public final AdvancedDouble inverse() {
+        return ONE.divide(this);
+    }
+
+    @Override
+    public final AdvancedDouble norm() {
+        return new AdvancedDouble(Math.abs(value));
+    }
+
+    @Override
+    public final AdvancedDouble normSquared() {
+        return new AdvancedDouble(value * value);
+    }
+
+    @Override
+    public final AdvancedDouble log(AdvancedNumber number) {
+        return new AdvancedDouble(Math.log((value))).divide(number.log());
+    }
+
+    @Override
+    public final AdvancedDouble log(double number) {
+        return new AdvancedDouble(Math.log((value) / Math.log(number)));
+    }
+
+    @Override
+    public final AdvancedDouble log(int number) {
+        return new AdvancedDouble(Math.log((value) / Math.log(number)));
+    }
+
+    @Override
+    public final AdvancedDouble log1p() {
+        return new AdvancedDouble(Math.log1p(value));
+    }
+
+    @Override
+    public final AdvancedDouble log2() {
+        return new AdvancedDouble(Math.log(value));
+    }
+
+    @Override
+    public final AdvancedDouble negate() {
+        return new AdvancedDouble(-value);
+    }
+
+    @Override
+    public final AdvancedDouble pow(double number) {
+        return new AdvancedDouble(Math.pow(value, number));
+    }
+
+    @Override
+    public final AdvancedDouble pow(int n) {
+        return new AdvancedDouble(Math.pow(value, n));
+    }
+
+    @Override
+    public final AdvancedDouble sec() {
+        return new AdvancedDouble(Math.cos(value)).inverse();
+    }
+
+    @Override
+    public final AdvancedDouble sgn() {
+        return new AdvancedDouble(value == 0 ? 0 : (value > 1 ? 1 : -1));
+    }
+
+    @Override
+    public final AdvancedDouble sin() {
+        return new AdvancedDouble(Math.sin(value));
+    }
+
+    @Override
+    public final AdvancedDouble sinh() {
+        return new AdvancedDouble(Math.sinh(value));
+    }
+
+    @Override
+    public final AdvancedDouble tan() {
+        return new AdvancedDouble(Math.tan(value));
+    }
+
+    @Override
+    public final AdvancedDouble tanh() {
+        return new AdvancedDouble(Math.tanh(value));
     }
 
     @Override

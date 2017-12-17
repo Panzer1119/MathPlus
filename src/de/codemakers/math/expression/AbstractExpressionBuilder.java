@@ -122,4 +122,6 @@ public abstract class AbstractExpressionBuilder<T> {
 
     public abstract AbstractExpression build();
 
+    public abstract AbstractMultiExpression buildMulti();
+
 }

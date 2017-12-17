@@ -15,8 +15,7 @@ public class ComplexDoubleExpressionBuilder extends AbstractExpressionBuilder<Co
         super(expression);
     }
 
-    @Override
-    public final ComplexDoubleExpression build() {
+    private final void prepare() {
         if (expression.length() == 0) {
             throw new IllegalArgumentException("The expression can not be empty");
         }
@@ -32,7 +31,18 @@ public class ComplexDoubleExpressionBuilder extends AbstractExpressionBuilder<Co
                 throw new IllegalArgumentException(String.format("A variable can not have the same name as a function [%s]", variableName));
             }
         }
+    }
+
+    @Override
+    public final ComplexDoubleExpression build() {
+        prepare();
         return new ComplexDoubleExpression(ShuntingYard.convertToComplexDoubleRPN(expression, userFunctions, userOperators, variableNames, implicitMultiplication), userFunctions.keySet());
+    }
+
+    @Override
+    public final ComplexDoubleMultiExpression buildMulti() {
+        prepare();
+        return new ComplexDoubleMultiExpression(ShuntingYard.convertToComplexDoubleRPN(expression, userFunctions, userOperators, variableNames, implicitMultiplication), userFunctions.keySet());
     }
 
 }

@@ -7,13 +7,19 @@ package de.codemakers.math;
  */
 public class AdvancedDouble extends AdvancedNumber {
 
+    public static final AdvancedDouble MINUES_TEN = new AdvancedDouble(-10);
+    public static final AdvancedDouble MINUES_PI = new AdvancedDouble(-Math.PI);
+    public static final AdvancedDouble MINUES_THREE = new AdvancedDouble(-3);
+    public static final AdvancedDouble MINUES_E = new AdvancedDouble(-Math.E);
+    public static final AdvancedDouble MINUES_TWO = new AdvancedDouble(-2);
+    public static final AdvancedDouble MINUES_ONE = new AdvancedDouble(-1);
     public static final AdvancedDouble ZERO = new AdvancedDouble(0);
     public static final AdvancedDouble ONE = new AdvancedDouble(1);
-    public static final AdvancedDouble MINUES_ONE = new AdvancedDouble(-1);
-    public static final AdvancedDouble PI = new AdvancedDouble(Math.PI);
-    public static final AdvancedDouble MINUES_PI = new AdvancedDouble(-Math.PI);
+    public static final AdvancedDouble TWO = new AdvancedDouble(2);
     public static final AdvancedDouble E = new AdvancedDouble(Math.E);
-    public static final AdvancedDouble MINUES_E = new AdvancedDouble(-Math.E);
+    public static final AdvancedDouble THREE = new AdvancedDouble(3);
+    public static final AdvancedDouble PI = new AdvancedDouble(Math.PI);
+    public static final AdvancedDouble TEN = new AdvancedDouble(10);
 
     private double value = 0.0;
 

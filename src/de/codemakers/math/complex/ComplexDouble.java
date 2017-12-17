@@ -18,35 +18,24 @@ public class ComplexDouble extends AdvancedNumber {
     public static final Pattern REAL_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d+)");
     public static final Pattern IMAGINARY_NUMBER_PATTERN = Pattern.compile("((?:\\+|-)?(?:\\d+(?:.|,))?\\d*)i");
 
-    public static final ComplexDouble MINUS_TEN_I = ofDouble(0, -10);
-    public static final ComplexDouble MINUS_TEN = ofDouble(-10);
-    public static final ComplexDouble MINUS_PI_I = ofDouble(0, -Math.PI);
-    public static final ComplexDouble MINUS_PI = ofDouble(-Math.PI);
-    public static final ComplexDouble MINUS_THREE_I = ofDouble(0, -3);
-    public static final ComplexDouble MINUS_THREE = ofDouble(-3);
-    public static final ComplexDouble MINUS_E_I = ofDouble(0, -Math.E);
-    public static final ComplexDouble MINUS_E = ofDouble(-Math.E);
-    public static final ComplexDouble MINUS_TWO_I = ofDouble(0, -2);
-    public static final ComplexDouble MINUS_TWO = ofDouble(-2);
-    public static final ComplexDouble MINUS_ONE_I = ofDouble(0, -1);
-    public static final ComplexDouble MINUS_ONE = ofDouble(-1);
-    public static final ComplexDouble MINUS_HALF_I = ofDouble(0, -0.5);
-    public static final ComplexDouble MINUES_HALF = ofDouble(-0.5);
-    public static final ComplexDouble ZERO = ofDouble(0);
-    public static final ComplexDouble HALF = ofDouble(0.5);
-    public static final ComplexDouble HALF_I = ofDouble(0, 0.5);
-    public static final ComplexDouble ONE = ofDouble(1);
-    public static final ComplexDouble ONE_I = ofDouble(0, 1);
-    public static final ComplexDouble TWO = ofDouble(2);
-    public static final ComplexDouble TWO_I = ofDouble(0, 2);
-    public static final ComplexDouble E = ofDouble(Math.E);
-    public static final ComplexDouble E_I = ofDouble(0, Math.E);
-    public static final ComplexDouble THREE = ofDouble(3);
-    public static final ComplexDouble THREE_I = ofDouble(0, 3);
-    public static final ComplexDouble PI = ofDouble(Math.PI);
-    public static final ComplexDouble PI_I = ofDouble(0, Math.PI);
-    public static final ComplexDouble TEN = ofDouble(10);
-    public static final ComplexDouble TEN_I = ofDouble(0, 10);
+    public static final ComplexDouble MINUS_TEN = ofDouble(-10), MINUS_TEN_I = ofDouble(0, -10), MINUS_TEN_MINUS_TEN_I = ofDouble(-10, -10);
+    public static final ComplexDouble MINUS_FIVE = ofDouble(-5), MINUS_FIVE_I = ofDouble(0, -5), MINUS_FIVE_MINUS_FIVE_I = ofDouble(-5, -5);
+    public static final ComplexDouble MINUS_PI = ofDouble(-Math.PI), MINUS_PI_I = ofDouble(0, -Math.PI), MINUS_PI_MINUS_PI_I = ofDouble(-Math.PI, -Math.PI);
+    public static final ComplexDouble MINUS_THREE = ofDouble(-3), MINUS_THREE_I = ofDouble(0, -3), MINUS_THREE_MINUS_THREE_I = ofDouble(-3, -3);
+    public static final ComplexDouble MINUS_E = ofDouble(-Math.E), MINUS_E_I = ofDouble(0, -Math.E), MINUS_E_MINUS_E_I = ofDouble(-Math.E, -Math.E);
+    public static final ComplexDouble MINUS_TWO = ofDouble(-2), MINUS_TWO_I = ofDouble(0, -2), MINUS_TWO_MINUS_TWO_I = ofDouble(-2, -2);
+    public static final ComplexDouble MINUS_ONE = ofDouble(-1), MINUS_ONE_I = ofDouble(0, -1), MINUS_ONE_MINUS_ONE_I = ofDouble(-1, -1);
+    public static final ComplexDouble MINUS_HALF = ofDouble(-0.5), MINUS_HALF_I = ofDouble(0, -0.5), MINUS_HALF_MINUS_HALF_I = ofDouble(-0.5, -0.5);
+    public static final ComplexDouble MINUS_ZERO = ofDouble(-0), MINUS_ZERO_I = ofDouble(-0, -0), MINUS_ZERO_MINUS_ZERO_I = ofDouble(-0, -0);
+    public static final ComplexDouble ZERO = ofDouble(0), ZERO_I = ofDouble(0, 0), ZERO_ZERO_I = ofDouble(0, 0);
+    public static final ComplexDouble HALF = ofDouble(0.5), HALF_I = ofDouble(0, 0.5), HALF_HALF_I = ofDouble(0.5, 0.5);
+    public static final ComplexDouble ONE = ofDouble(1), ONE_I = ofDouble(0, 1), ONE_ONE_I = ofDouble(1, 1);
+    public static final ComplexDouble TWO = ofDouble(2), TWO_I = ofDouble(0, 2), TWO_TWO_I = ofDouble(2, 2);
+    public static final ComplexDouble E = ofDouble(Math.E), E_I = ofDouble(0, Math.E), E_E_I = ofDouble(Math.E, Math.E);
+    public static final ComplexDouble THREE = ofDouble(3), THREE_I = ofDouble(0, 3), THREE_THREE_I = ofDouble(3, 3);
+    public static final ComplexDouble PI = ofDouble(Math.PI), PI_I = ofDouble(0, Math.PI), PI_PI_I = ofDouble(Math.PI, Math.PI);
+    public static final ComplexDouble FIVE = ofDouble(5), FIVE_I = ofDouble(0, 5), FIVE_FIVE_I = ofDouble(5, 5);
+    public static final ComplexDouble TEN = ofDouble(10), TEN_I = ofDouble(0, 10), TEN_TEN_I = ofDouble(10, 10);
 
     public static final ComplexDouble GOLDEN_RATIO = ofDouble(1.6180339887498948482045868343656);
     public static final ComplexDouble GAMMA = ofDouble(0.577215664901532860606512090082402431);
@@ -542,7 +531,7 @@ public class ComplexDouble extends AdvancedNumber {
         number = correct(number);
         return subtract((ComplexDouble) number);
     }
-    
+
     private final ComplexDouble correct(AdvancedNumber number) {
         if (number instanceof AdvancedDouble) {
             return new ComplexDouble(((AdvancedDouble) number).doubleValue(), 0);

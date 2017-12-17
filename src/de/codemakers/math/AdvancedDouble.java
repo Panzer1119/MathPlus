@@ -7,19 +7,26 @@ package de.codemakers.math;
  */
 public class AdvancedDouble extends AdvancedNumber {
 
-    public static final AdvancedDouble MINUES_TEN = new AdvancedDouble(-10);
-    public static final AdvancedDouble MINUES_PI = new AdvancedDouble(-Math.PI);
-    public static final AdvancedDouble MINUES_THREE = new AdvancedDouble(-3);
-    public static final AdvancedDouble MINUES_E = new AdvancedDouble(-Math.E);
-    public static final AdvancedDouble MINUES_TWO = new AdvancedDouble(-2);
-    public static final AdvancedDouble MINUES_ONE = new AdvancedDouble(-1);
-    public static final AdvancedDouble ZERO = new AdvancedDouble(0);
-    public static final AdvancedDouble ONE = new AdvancedDouble(1);
-    public static final AdvancedDouble TWO = new AdvancedDouble(2);
-    public static final AdvancedDouble E = new AdvancedDouble(Math.E);
-    public static final AdvancedDouble THREE = new AdvancedDouble(3);
-    public static final AdvancedDouble PI = new AdvancedDouble(Math.PI);
-    public static final AdvancedDouble TEN = new AdvancedDouble(10);
+    public static final AdvancedDouble MINUS_TEN = ofDouble(-10);
+    public static final AdvancedDouble MINUS_FIVE = ofDouble(-5);
+    public static final AdvancedDouble MINUS_PI = ofDouble(-Math.PI);
+    public static final AdvancedDouble MINUS_THREE = ofDouble(-3);
+    public static final AdvancedDouble MINUS_E = ofDouble(-Math.E);
+    public static final AdvancedDouble MINUS_TWO = ofDouble(-2);
+    public static final AdvancedDouble MINUS_ONE = ofDouble(-1);
+    public static final AdvancedDouble MINUS_GOLDEN_RATIO = ofDouble(-1.6180339887498948482045868343656);
+    public static final AdvancedDouble MINUS_GAMMA = ofDouble(-0.577215664901532860606512090082402431);
+    public static final AdvancedDouble MINUS_ZERO = ofDouble(-0);
+    public static final AdvancedDouble ZERO = ofDouble(0);
+    public static final AdvancedDouble ONE = ofDouble(1);
+    public static final AdvancedDouble GAMMA = ofDouble(0.577215664901532860606512090082402431);
+    public static final AdvancedDouble GOLDEN_RATIO = ofDouble(1.6180339887498948482045868343656);
+    public static final AdvancedDouble TWO = ofDouble(2);
+    public static final AdvancedDouble E = ofDouble(Math.E);
+    public static final AdvancedDouble THREE = ofDouble(3);
+    public static final AdvancedDouble PI = ofDouble(Math.PI);
+    public static final AdvancedDouble FIVE = ofDouble(5);
+    public static final AdvancedDouble TEN = ofDouble(10);
 
     private double value = 0.0;
 
@@ -269,6 +276,46 @@ public class AdvancedDouble extends AdvancedNumber {
     @Override
     public final boolean isCompatible(AdvancedNumber number) {
         return number != null && number instanceof AdvancedDouble;
+    }
+
+    /**
+     * Returns an AdvancedDouble of one integer
+     *
+     * @param number Number
+     * @return A new AdvancedDouble
+     */
+    public static final AdvancedDouble ofInt(int number) {
+        return new AdvancedDouble(number);
+    }
+
+    /**
+     * Returns an AdvancedDouble of one long
+     *
+     * @param number Number
+     * @return A new AdvancedDouble
+     */
+    public static final AdvancedDouble ofLong(long number) {
+        return new AdvancedDouble(number);
+    }
+
+    /**
+     * Returns an AdvancedDouble of one float
+     *
+     * @param number Number
+     * @return A new AdvancedDouble
+     */
+    public static final AdvancedDouble ofFloat(float number) {
+        return new AdvancedDouble(number);
+    }
+
+    /**
+     * Returns an AdvancedDouble of one double
+     *
+     * @param number Number
+     * @return A new AdvancedDouble
+     */
+    public static final AdvancedDouble ofDouble(double number) {
+        return new AdvancedDouble(number);
     }
 
 }

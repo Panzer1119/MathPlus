@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ComplexDoubleFunctions {
 
-    public static final List<AbstractFunction<ComplexDouble>> STANDARD_FUNCTIONS = new ArrayList<>(27);
+    public static final List<AbstractFunction<ComplexDouble>> STANDARD_FUNCTIONS = new ArrayList<>(28);
 
     static {
         STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("sin") {
@@ -176,6 +176,34 @@ public class ComplexDoubleFunctions {
                 return ComplexDouble.ofDouble(args[0].getImaginaryPart());
             }
         });
+        STANDARD_FUNCTIONS.add(new AbstractFunction<ComplexDouble>("fact", 1) {
+            @Override
+            public final ComplexDouble apply(ComplexDouble... args) {
+                return factorial(args[0]);
+            }
+        });
+    }
+
+    private static final ComplexDouble factorial(ComplexDouble number) {
+        ComplexDouble temp = ComplexDouble.ONE;
+        for (int i = 1; i <= number.getNorm(); i++) {
+            temp = temp.multiply(ComplexDouble.ofInt(i));
+        }
+        return temp;
+    }
+
+    @Deprecated
+    private static final ComplexDouble gammaFunction(ComplexDouble number) {
+        ComplexDouble temp = ComplexDouble.ONE;
+        for (int i = 1; i <= 1000; i++) {
+            temp = temp.multiply(gammaFunctionStep(number, i));
+        }
+        return ComplexDouble.ONE.divide(number).multiply(temp);
+    }
+
+    @Deprecated
+    private static final ComplexDouble gammaFunctionStep(ComplexDouble number, int n) {
+        return ComplexDouble.ONE.add(ComplexDouble.ONE.divide(ComplexDouble.ofInt(n))).pow(number).divide(ComplexDouble.ONE.add(number.divide(ComplexDouble.ofInt(n))));
     }
 
     public static final AbstractFunction<ComplexDouble> getStandardFunction(String name) {

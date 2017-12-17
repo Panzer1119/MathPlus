@@ -32,6 +32,10 @@ public abstract class AbstractOperator<T> {
      */
     public static final int PRECEDENCE_POWER = 10000;
     /**
+     * The precedence value for the over power operation
+     */
+    public static final int PRECEDENCE_OVER_POWER = 15000;
+    /**
      * The precedence value for the unary minus operation
      */
     public static final int PRECEDENCE_UNARY_MINUS = 5000;

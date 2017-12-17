@@ -16,49 +16,49 @@ public class ComplexDoubleOperators {
     static {
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "+", AbstractOperator.PRECEDENCE_ADDITION) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].add(args[1]);
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "-", AbstractOperator.PRECEDENCE_SUBTRACTION) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].subtract(args[1]);
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(1, false, "+", AbstractOperator.PRECEDENCE_UNARY_PLUS) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0];
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(1, false, "-", AbstractOperator.PRECEDENCE_UNARY_MINUS) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].negate();
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "*", AbstractOperator.PRECEDENCE_MULTIPLICATION) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].multiply(args[1]);
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "/", AbstractOperator.PRECEDENCE_DIVISION) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].divide(args[1]);
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, false, "^", AbstractOperator.PRECEDENCE_POWER) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].pow(args[1]);
             }
         });
         STANDARD_OPERATORS.add(new AbstractOperator<ComplexDouble>(2, true, "%", AbstractOperator.PRECEDENCE_MODULO) {
             @Override
-            public ComplexDouble apply(ComplexDouble... args) {
+            public final ComplexDouble apply(ComplexDouble... args) {
                 return args[0].mod(args[1]);
             }
         });

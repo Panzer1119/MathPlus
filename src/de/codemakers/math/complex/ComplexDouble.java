@@ -548,6 +548,7 @@ public class ComplexDouble extends AdvancedNumber {
             return true;
         }
         check(number);
+        number = correct(number);
         final ComplexDouble number_ = (ComplexDouble) number;
         return real_part == number_.real_part && imaginary_part == number_.imaginary_part;
     }

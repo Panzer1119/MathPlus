@@ -1,5 +1,8 @@
 package de.codemakers.math;
 
+import de.codemakers.math.complex.ComplexDouble;
+import de.codemakers.math.exact.ExactSum;
+
 /**
  * AdvancedDouble
  *
@@ -67,12 +70,6 @@ public class AdvancedDouble extends AdvancedNumber {
     public final AdvancedDouble mod(AdvancedNumber number) {
         check(number);
         return new AdvancedDouble(value % number.doubleValue());
-    }
-
-    @Override
-    public final AdvancedDouble pow(AdvancedNumber number) {
-        check(number);
-        return new AdvancedDouble(Math.pow(value, number.doubleValue()));
     }
 
     @Override
@@ -197,13 +194,42 @@ public class AdvancedDouble extends AdvancedNumber {
     }
 
     @Override
-    public final AdvancedDouble pow(double number) {
-        return new AdvancedDouble(Math.pow(value, number));
+    public final AdvancedNumber pow(AdvancedNumber number) {
+        check(number);
+        if (value < 0 && number.doubleValue() % 1 != 0) {
+            return new ComplexDouble(Math.pow(-value, number.doubleValue()), 1.0);
+        }
+        return new AdvancedDouble(Math.pow(value, number.doubleValue()));
     }
 
     @Override
-    public final AdvancedDouble pow(int n) {
-        return new AdvancedDouble(Math.pow(value, n));
+    public final AdvancedNumber pow(double number) {
+        return pow(new AdvancedDouble(number));
+    }
+
+    @Override
+    public final AdvancedNumber pow(int number) {
+        return pow(new AdvancedDouble(number));
+    }
+
+    @Override
+    public final AdvancedNumber root(AdvancedNumber number) {
+        return pow(number.inverse());
+    }
+
+    @Override
+    public final AdvancedNumber root(double number) {
+        return root(new AdvancedDouble(number));
+    }
+
+    @Override
+    public final AdvancedNumber root(int number) {
+        return root(new AdvancedDouble(number));
+    }
+
+    @Override
+    public final AdvancedNumber sqrt() {
+        return root(TWO);
     }
 
     @Override

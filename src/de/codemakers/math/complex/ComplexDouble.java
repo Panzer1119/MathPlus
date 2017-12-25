@@ -239,6 +239,26 @@ public class ComplexDouble extends AdvancedNumber {
         return ONE_I.multiply(this_temp.add(ONE)).divide(this_temp.subtract(ONE));
     }
 
+    @Override
+    public final AdvancedNumber root(AdvancedNumber number) {
+        return pow(number.inverse());
+    }
+
+    @Override
+    public final AdvancedNumber root(double number) {
+        return root(ofDouble(number));
+    }
+
+    @Override
+    public final AdvancedNumber root(int number) {
+        return root(ofInt(number));
+    }
+
+    @Override
+    public final AdvancedNumber sqrt() {
+        return root(TWO);
+    }
+
     /**
      * Returns the secant of this ComplexDouble
      *

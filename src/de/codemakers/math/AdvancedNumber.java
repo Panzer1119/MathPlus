@@ -36,7 +36,7 @@ public abstract class AdvancedNumber extends Number {
     public abstract AdvancedNumber expm1();
 
     public abstract AdvancedNumber floor();
-    
+
     public abstract AdvancedNumber inverse();
 
     public abstract AdvancedNumber norm();
@@ -67,9 +67,15 @@ public abstract class AdvancedNumber extends Number {
 
     public abstract AdvancedNumber pow(double number);
 
-    public abstract AdvancedNumber pow(int n);
+    public abstract AdvancedNumber pow(int number);
 
     public abstract AdvancedNumber reset();
+
+    public abstract AdvancedNumber root(AdvancedNumber number);
+
+    public abstract AdvancedNumber root(double number);
+
+    public abstract AdvancedNumber root(int number);
 
     public abstract AdvancedNumber sec();
 
@@ -78,6 +84,8 @@ public abstract class AdvancedNumber extends Number {
     public abstract AdvancedNumber sin();
 
     public abstract AdvancedNumber sinh();
+
+    public abstract AdvancedNumber sqrt();
 
     public abstract AdvancedNumber subtract(AdvancedNumber number);
 

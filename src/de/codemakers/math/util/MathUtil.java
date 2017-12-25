@@ -6,6 +6,8 @@ package de.codemakers.math.util;
  * @author Paul Hagedorn
  */
 public class MathUtil {
+    
+    public static final String STRING_NAN = "" + Double.NaN;
 
     public static final char[][] PARENTHESES = new char[][]{{'(', ')'}, {'[', ']'}, {'{', '}'}};
 
